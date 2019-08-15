@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="原先使用的Androidstudio版本为2.2,最近换成了3.1.2,用下来发现,3.1.2有不少坑需要踩 今天总结常用的butterknife注入 2.2的时候直接用就行 3.1.2网上说的都解决不了 …. 先降回2.2了">
+<meta name="description" content="原先使用的Androidstudio版本为2.2,最近换成了3.1.2,用下来发现,3.1.2有不少坑需要踩 今天总结常用的butterknife框架 现象:按照github上的要求进行配置,报资源找不到的错误 原因:sdk和butterknife的版本问题 解决方法:按如下配置,将sdk改成27 butterknife版本改成8.8.1 配置代码如下,其他的还是和github要求一致即可 123">
 <meta name="keywords" content="butterknife">
 <meta property="og:type" content="article">
 <meta property="og:title" content="android3&amp;牛油刀-butterknife问题">
 <meta property="og:url" content="http://yoursite.com/2018/08/02/android3牛油刀-butterknife问题/index.html">
 <meta property="og:site_name" content="殷德超">
-<meta property="og:description" content="原先使用的Androidstudio版本为2.2,最近换成了3.1.2,用下来发现,3.1.2有不少坑需要踩 今天总结常用的butterknife注入 2.2的时候直接用就行 3.1.2网上说的都解决不了 …. 先降回2.2了">
+<meta property="og:description" content="原先使用的Androidstudio版本为2.2,最近换成了3.1.2,用下来发现,3.1.2有不少坑需要踩 今天总结常用的butterknife框架 现象:按照github上的要求进行配置,报资源找不到的错误 原因:sdk和butterknife的版本问题 解决方法:按如下配置,将sdk改成27 butterknife版本改成8.8.1 配置代码如下,其他的还是和github要求一致即可 123">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-12T06:42:46.901Z">
+<meta property="og:updated_time" content="2019-08-15T00:41:20.694Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="android3&amp;牛油刀-butterknife问题">
-<meta name="twitter:description" content="原先使用的Androidstudio版本为2.2,最近换成了3.1.2,用下来发现,3.1.2有不少坑需要踩 今天总结常用的butterknife注入 2.2的时候直接用就行 3.1.2网上说的都解决不了 …. 先降回2.2了">
+<meta name="twitter:description" content="原先使用的Androidstudio版本为2.2,最近换成了3.1.2,用下来发现,3.1.2有不少坑需要踩 今天总结常用的butterknife框架 现象:按照github上的要求进行配置,报资源找不到的错误 原因:sdk和butterknife的版本问题 解决方法:按如下配置,将sdk改成27 butterknife版本改成8.8.1 配置代码如下,其他的还是和github要求一致即可 123">
 
 
 
@@ -353,11 +353,14 @@
 
       
         <p>原先使用的Androidstudio版本为2.2,最近换成了3.1.2,用下来发现,3.1.2有不少坑需要踩</p>
-<p>今天总结常用的butterknife注入</p>
-<p>2.2的时候直接用就行</p>
-<p>3.1.2网上说的都解决不了</p>
-<p>….</p>
-<p>先降回2.2了</p>
+<p>今天总结常用的butterknife框架</p>
+<h2 id="现象"><a href="#现象" class="headerlink" title="现象:"></a>现象:</h2><p>按照github上的要求进行配置,报资源找不到的错误</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因:"></a>原因:</h2><p>sdk和butterknife的版本问题</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法:"></a>解决方法:</h2><p>按如下配置,将sdk改成27</p>
+<p>butterknife版本改成8.8.1</p>
+<p>配置代码如下,其他的还是和github要求一致即可</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'com.android.application'</span></span><br><span class="line">apply plugin: <span class="string">'com.jakewharton.butterknife'</span></span><br><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">    compileSdkVersion <span class="number">27</span></span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        applicationId <span class="string">"com.example.yinde.myapplication"</span></span><br><span class="line">        minSdkVersion <span class="number">15</span></span><br><span class="line">        targetSdkVersion <span class="number">27</span></span><br><span class="line">        versionCode <span class="number">1</span></span><br><span class="line">        versionName <span class="string">"1.0"</span></span><br><span class="line">        testInstrumentationRunner <span class="string">"android.support.test.runner.AndroidJUnitRunner"</span></span><br><span class="line">    &#125;</span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            minifyEnabled <span class="keyword">false</span></span><br><span class="line">            <span class="function">proguardFiles <span class="title">getDefaultProguardFile</span><span class="params">(<span class="string">'proguard-android.txt'</span>)</span>, 'proguard-rules.pro'</span></span><br><span class="line"><span class="function">        &#125;</span></span><br><span class="line"><span class="function">    &#125;</span></span><br><span class="line"><span class="function">    compileOptions </span>&#123;</span><br><span class="line">        sourceCompatibility JavaVersion.VERSION_1_8</span><br><span class="line">        targetCompatibility JavaVersion.VERSION_1_8</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    <span class="function">implementation <span class="title">fileTree</span><span class="params">(dir: <span class="string">'libs'</span>, include: [<span class="string">'*.jar'</span>])</span></span></span><br><span class="line"><span class="function">    implementation 'com.android.support:appcompat-v7:27.1.0'</span></span><br><span class="line"><span class="function">    implementation 'com.android.support.constraint:constraint-layout:1.1.3'</span></span><br><span class="line"><span class="function">    implementation 'com.jakewharton:butterknife:8.8.1'</span></span><br><span class="line"><span class="function">    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'</span></span><br><span class="line"><span class="function">    testImplementation 'junit:junit:4.12'</span></span><br><span class="line"><span class="function">    androidTestImplementation 'com.android.support.test:runner:1.0.2'</span></span><br><span class="line"><span class="function">    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -496,8 +499,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -559,6 +571,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#现象"><span class="nav-number">1.</span> <span class="nav-text">现象:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原因"><span class="nav-number">2.</span> <span class="nav-text">原因:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方法"><span class="nav-number">3.</span> <span class="nav-text">解决方法:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

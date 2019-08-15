@@ -1403,13 +1403,12 @@
         
           
           原先使用的Androidstudio版本为2.2,最近换成了3.1.2,用下来发现,3.1.2有不少坑需要踩
-今天总结常用的butterknife注入
-2.2的时候直接用就行
-3.1.2网上说的都解决不了
-….
-先降回2.2了
+今天总结常用的butterknife框架
+现象:按照github上的要求进行配置,报资源找不到的错误
+原因:sdk和butterknife的版本问题
+解决方法:按如下配置,将sdk改成27
 
-          
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/08/02/android3牛油刀-butterknife问题/#more" rel="contents">
